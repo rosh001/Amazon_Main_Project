@@ -1,0 +1,78 @@
+package Main_Project;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Amazon_demo {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\ABC\\eclipse-workspace\\Project\\chromedriver.exe");
+		WebDriver driver =new ChromeDriver();
+		
+		//To Maximize the window
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        
+//Get Amazon URL home page         
+		driver.get("https://www.amazon.in/");
+	
+	
+		
+// Click on Hamburger menu
+	    driver.findElement(By.id("nav-hamburger-menu")).click();
+		Thread.sleep(2000);
+		
+// Click on Mobile, Computer menu
+	    driver.findElement(By.xpath("//a[@data-menu-id='8']")).click();
+		Thread.sleep(2000);
+		
+// Click on Tablets//
+	    driver.findElement(By.xpath("//*[@id=\"hmenu-content\"]/ul[8]/li[9]/a")).click();
+	    Thread.sleep(2000);
+	    
+//click on 12-16 GB check box 		                        
+	    driver.findElement(By.xpath("//*[@id=\"s-refinements\"]/div[5]/ul/li[3]/span/a/span")).click();
+	    Thread.sleep(2000);
+	    List<WebElement> priceList16Gb=driver.findElements(By.xpath("//span[@class='a-price-whole']"));
+
+
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	  driver.findElement(By.id("twotabsearchtextbox")).sendKeys("Apple2021");
+	  driver.findElement(By.id("nav-search-submit-button")).click();
+	  driver.findElement(By.xpath("//img[@class=\"s-image\"]")).click();
+	 Thread.sleep(5000);
+	 //switching window
+	    Set<String> s =driver.getWindowHandles();
+	    ArrayList ar= new ArrayList(s);
+	    System.out.println(ar.get(0));
+	    System.out.println(ar.get(1));
+
+     driver.switchTo().window((String)ar.get(1));
+
+	 
+	
+	 
+//Click on add to cart	
+	  
+	 driver.findElement(By.xpath("/html/body/div[4]/div[2]/div[3]/div[8]/div[8]/div/div[1]/div/div[1]/div/div/div[2]/div/div[2]/div/form/div/div/div[32]/div[1]/span/span/span/input")).click();
+
+	    Thread.sleep(2000);
+	    
+	    
+
+
+// Close Test
+	    driver.close();
+	    }
+	    
+
+	}
+
+
